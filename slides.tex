@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{multicol}
 
 \usetheme[mylogo]{Boadilla}
 
@@ -41,12 +42,24 @@
 
 \begin{frame}
   \frametitle{Topics}
-  \begin{enumerate}
+  \begin{itemize}
     \item Bastion Host
-    \item Network Monitoring/Firewall/Routing ``HyperCube''
+    \begin{itemize}
+      \item About
+      \item Setup
+      \item Passwords
+    \end{itemize}
     \item CS Lab Network Reconfiguration
-    \item Implemented Security Policies
-  \end{enumerate}
+    \begin{itemize}
+      \item Implemented Security Policies
+      \item Network Monitoring/Firewall/Routing ``HyperCube''
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centerline{\huge{Bastion Host}}
+  
 \end{frame}
 
 \begin{frame}
@@ -80,6 +93,83 @@ What goes behind the Bastion Host? (i.e. what goes through it?)
 \end{frame}
 
 \begin{frame}
+  \frametitle{Building the Bastion Host}
+\begin{multicols}{2}
+Setup
+  \begin{itemize}
+    \item Virtual Machine
+    \item OpenBSD 5.4 x86\_64
+  \end{itemize}
+Configuration  \begin{itemize}
+    \item SSH on port 1122
+    \item Sudo actually reports incidents
+    \item Password complexity requirements
+    \item Send logs to Storage
+  \end{itemize}
+\columnbreak
+\begin{figure}[t]
+\includegraphics[width=2.2in]{diagrams/sudo.png}
+\end{figure}
+\end{multicols}
+%  \includegraphics[width=\textwidth]{diagrams/sudo.png}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Password Complexity}
+\centerline{\includegraphics[width=3.7in]{diagrams/password.png}}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Password Complexity}
+%  \begin{itemize}
+   % \item
+Implement a ``Minimum Entropy Requirement'' \\ ~ \\
+Several ways to meet (but not limited to):
+    \begin{itemize}
+      \item Around twelve characters (letters, numbers, symbols) 
+      \item Non-dictionary words OR 
+      \item Lengthy combination of words (a la xkcd)
+      \item Generated Passwords (e.g. Pass, KeyPass) 
+    \end{itemize}
+ % \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centerline{\huge{Network Reconfiguration}}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Network Reconfiguration (cont.)}
+128.153.144 $\implies$ Inaccessible from Outside
+  \begin{itemize}
+    \item COSI/ITL Lab Machines
+    \item Wireless Network (dd-wrt)
+    \item Open Ethernet Ports
+  \end{itemize}
+128.153.145 $\implies$ SSH through Isengard
+  \begin{itemize}
+    \item Internal Services
+  \end{itemize}
+128.153.146 $\implies$ SSH from Clarkson, everything else open
+  \begin{itemize}
+    \item Web Hosts
+    \item Student Projects
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Network Reconfiguration (cont.)}
+Security Policies
+  \begin{itemize}
+      \item Europa \& Juno: Enforce SSH traffic only from Isengard
+      \item Titan: Enforce SSH traffic from only Clarkson's Network (including Isengard)
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \frametitle{``HyperCube''}
 What is the Network Monitoring/Firewalling/Routing Box?
   \begin{itemize}
@@ -96,29 +186,6 @@ Why is this ``HyperCube'' important?
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Network Reconfiguration}
-EXPLAIN WHY WE NEED TO RECONFIGURE HERE
-\end{frame}
-
-\begin{frame}
-  \frametitle{Network Reconfiguration (cont.)}
-128.153.144 $\implies$ Inaccessible from Outside
-  \begin{itemize}
-    \item COSI/ITL Lab Machines
-    \item Wireless Network
-    \item Open Ethernet Ports
-  \end{itemize}
-128.153.145 $\implies$ SSH through Isengard
-  \begin{itemize}
-    \item Internal Services
-  \end{itemize}
-128.153.146 $\implies$ SSH from Clarkson, everything else open
-  \begin{itemize}
-    \item Web Hosts
-    \item Student Projects
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \frametitle{Network Reconfiguration (tl;dr)} 
@@ -126,13 +193,8 @@ EXPLAIN WHY WE NEED TO RECONFIGURE HERE
 \end{frame}
 
 \begin{frame}
-  \frametitle{Network Reconfiguration (cont.)}
-Security Policies
-  \begin{itemize}
-      \item Europa \& Juno: Enforce SSH traffic only from Isengard
-      \item Titan: Enforce SSH traffic from only Clarkson's Network (including Isengard)
-  \end{itemize}
-\end{frame}
+  \centerline{\huge{Questions?}}
 
+\end{frame}
 
 \end{document} 

@@ -5,6 +5,7 @@ final.pdf: final.tex
 
 presentation.pdf: slides.tex
 	pdflatex $<
+	pdflatex $<
 
 clean:
 	rm *.log *.aux *.out *.toc *.snm *.nav
